@@ -19,4 +19,4 @@ Inspired by nothings's [*single_file_libs*](https://github.com/nothings/single_f
 
 | script                                                    | requires                | license      | description
 | --------------------------------------------------------- |:-----------------------:|:------------:| -----------
-| [scrape_reddit.py](blob/master/scrape_reddit.py)          | wget, youtube-dl        | CC BY-SA 4.0 | Downloads images and video from reddit listing pages. See file for specific domains/media types.
+| [scrape_reddit.py](scrape_reddit.py)          | wget, youtube-dl        | CC BY-SA 4.0 | Downloads images and video from reddit listing pages. See file for specific domains/media types.
