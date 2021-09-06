@@ -17,6 +17,12 @@ Inspired by nothings's [*single_file_libs*](https://github.com/nothings/single_f
 
 ### reddit.com
 
-| script                                                    | requires                | license      | description
-| --------------------------------------------------------- |:-----------------------:|:------------:| -----------
-| [scrape_reddit.py](scrape_reddit.py)          | wget, youtube-dl        | CC BY-SA 4.0 | Downloads images and video from reddit listing pages. See file for specific domains/media types.
+| script                                          | requires                | license      | description
+| ----------------------------------------------- |:-----------------------:|:------------:| -----------
+| [scrape_reddit.py](scrape_reddit.py)            | wget, youtube-dl        | CC BY-SA 4.0 | Downloads images and video from reddit listing pages. See file for specific domains/media types.
+
+### 4chan.org
+
+| script                                          | requires                | license      | description
+| ----------------------------------------------- |:-----------------------:|:------------:| -----------
+| [scrape_4chan.py](scrape_4chan.py)              | BeautifulSoup4, wget    | CC BY-SA 4.0 | Downloads media from 4chan threads.
