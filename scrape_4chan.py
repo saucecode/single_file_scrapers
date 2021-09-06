@@ -10,8 +10,8 @@
 		User-posted files.
 	
 	Usage:
-		$ python3 scrape_reddit.py https://boards.4channel.org/wsg/thread/00000000
-		$ python3 scrape_reddit.py https://boards.4chan.org/r/thread/00000000
+		$ python3 scrape_4chan.py https://boards.4channel.org/wsg/thread/00000000
+		$ python3 scrape_4chan.py https://boards.4chan.org/r/thread/00000000
 	
 	Extra Configuration:
 		bool: SAVE_AS_TITLE_INSTEAD_OF_POST_ID
