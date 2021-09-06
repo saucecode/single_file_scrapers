@@ -1,4 +1,4 @@
-# single-file-scrapers
+# single_file_scrapers
 
 These are some Python 3 web scraping scripts that I've written for my own personal use. They follow this set of criteria which I have an eye for:
 
