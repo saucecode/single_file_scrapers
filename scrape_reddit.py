@@ -1,4 +1,4 @@
-'''
+USAGE = '''
 	reddit.com listing scraper
 	
 	Requires:
@@ -59,8 +59,14 @@ scrape_definitions = {
 }
 
 def scrape(folder, data):
+	seen_urls = set()
 	for item in data['data']['children']:
 		item_url = item['data'].get('url', '')
+		
+		if item_url in seen_urls:
+			continue
+		else:
+			seen_urls.add(item_url)
 		
 		found = False
 		
@@ -74,16 +80,19 @@ def scrape(folder, data):
 			yield ['echo', 'Unknown handler for "' + item_url + '"']
 
 if __name__ == "__main__":
+	if not len(sys.argv) == 2:
+		print(USAGE)
+		sys.exit(1)
 	url = sys.argv[1]
 	req = requests.get(url, headers=headers)
 	data = req.json()
 	
-	expr = r'/(\w+)/.json'
+	expr = r'^https?://(www\.)?reddit.com/([ur]|user)/(\w+)/'
 	if not (folder := re.findall(expr, url)):
 		print('Could not determine a folder for url:', url)
 		sys.exit(1)
 	else:
-		folder = folder[0]
+		folder = folder[0][-1]
 	
 	if not os.path.exists(folder):
 		print('Creating new folder:', folder)
