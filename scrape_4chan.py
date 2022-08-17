@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-'''
+USAGE = '''
 	4chan/4channel file scraper
 	
 	Requires:
@@ -30,7 +30,7 @@ headers = {
 
 SAVE_AS_TITLE_INSTEAD_OF_POST_ID = False
 
-default_wget_command = lambda folder: ['wget', '-nv', '-U', headers['User-Agent'], '-P', folder]
+default_wget_command = lambda folder: ['wget', '-nv', '--no-clobber', '-U', headers['User-Agent'], '-P', folder]
 
 def scrape(folder, data):
 	soup = BeautifulSoup(data, 'lxml')
@@ -38,7 +38,7 @@ def scrape(folder, data):
 	for obj in soup.select('.file .fileText'):
 		anchor = obj.select('a')[0]
 		
-		if not anchor or not (anchor.get('href') and anchor.get('title')):
+		if not anchor or not anchor.get('href'):
 			continue
 		
 		href = anchor.get('href')
@@ -57,6 +57,9 @@ def scrape(folder, data):
 		
 
 if __name__ == "__main__":
+	if len(sys.argv) != 2:
+		print(USAGE)
+		sys.exit(1)
 	url = sys.argv[1]
 	req = requests.get(url, headers=headers)
 	
