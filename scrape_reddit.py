@@ -87,7 +87,7 @@ if __name__ == "__main__":
 	req = requests.get(url, headers=headers)
 	data = req.json()
 	
-	expr = r'^https?://(www\.)?reddit.com/([ur]|user)/(\w+)/'
+	expr = r'^https?://((www|old)\.)?reddit\.com/([ur]|user)/(\w+)/'
 	if not (folder := re.findall(expr, url)):
 		print('Could not determine a folder for url:', url)
 		sys.exit(1)
