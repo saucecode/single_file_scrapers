@@ -2,7 +2,7 @@ USAGE = '''
 	reddit.com listing scraper
 	
 	Requires:
-		wget, youtube-dl
+		wget, youtube-dl (or similar implementation)
 	
 	Scrapes:
 		i.imgur.com  images, mp4, and gifv
