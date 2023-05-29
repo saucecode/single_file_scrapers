@@ -23,6 +23,9 @@ USAGE = '''
 			?limit=100         -- gets 100 items
 			?after=t3_xxxxxx   -- retrieves posts after the given
 			                      post ID (for fetching the next page)
+		
+		Set the environment varialbe YTDL to use a different youtube-dl command, e.g
+		YTDL=yt-dlp python3 scrape_reddit.py http://...
 	
 	License:
 		Attribution-ShareAlike 4.0 International
@@ -37,13 +40,14 @@ headers = {
 }
 
 default_wget_command = lambda folder: ['wget', '-Nv', '-nv', '-U', headers['User-Agent'], '-P', folder]
+ytdl_command = os.environ.get('YTDL') or 'youtube-dl'
 
 scrape_definitions = {
 	r'^https?://i\.redd\.it/.*$':
 		lambda folder, url: [*default_wget_command(folder), url],
 	
 	r'^https?://v\.redd\.it/.*$':
-		lambda folder, url: ['youtube-dl', '-o', f'{folder}/%(title)s-%(id)s.%(ext)s', '--user-agent', headers['User-Agent'], url],
+		lambda folder, url: [ytdl_command, '-o', f'{folder}/%(title)s-%(id)s.%(ext)s', '--user-agent', headers['User-Agent'], url],
 		
 	r'^https?://i\.imgur\.com/.*\..{3}$':
 		lambda folder, url: [*default_wget_command(folder), url],
@@ -52,10 +56,10 @@ scrape_definitions = {
 		lambda folder, url: [*default_wget_command(folder), f'{url[:-4]}mp4'],
 	
 	r'^https?://redgifs.com/watch/.+$':
-		lambda folder, url: ['youtube-dl', '-o', f'{folder}/%(title)s-%(id)s.%(ext)s', '--user-agent', headers['User-Agent'], url],
+		lambda folder, url: [ytdl_command, '-o', f'{folder}/%(title)s-%(id)s.%(ext)s', '--user-agent', headers['User-Agent'], url],
 	
 	r'^https?://gfycat.com/.+$':
-		lambda folder, url: ['youtube-dl', '-o', f'{folder}/%(title)s-%(id)s.%(ext)s', '--user-agent', headers['User-Agent'], url]
+		lambda folder, url: [ytdl_command, '-o', f'{folder}/%(title)s-%(id)s.%(ext)s', '--user-agent', headers['User-Agent'], url]
 }
 
 def scrape(folder, data):
