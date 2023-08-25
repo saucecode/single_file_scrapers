@@ -55,7 +55,7 @@ scrape_definitions = {
 	r'^https?://i\.imgur\.com/.+\.gifv$':
 		lambda folder, url: [*default_wget_command(folder), f'{url[:-4]}mp4'],
 	
-	r'^https?://redgifs.com/watch/.+$':
+	r'^https?://(www\.)?redgifs.com/watch/.+$':
 		lambda folder, url: [ytdl_command, '-o', f'{folder}/%(title)s-%(id)s.%(ext)s', '--user-agent', headers['User-Agent'], url],
 	
 	r'^https?://gfycat.com/.+$':
@@ -118,4 +118,5 @@ if __name__ == "__main__":
 	
 	for command in commands:
 		print('$', *command)
-		subprocess.check_output(command)
+		with subprocess.Popen(command) as p:
+			pass
