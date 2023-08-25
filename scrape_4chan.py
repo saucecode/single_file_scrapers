@@ -49,9 +49,9 @@ def scrape(folder, data):
 		
 		if re.match('^https?://', href):
 			if SAVE_AS_TITLE_INSTEAD_OF_POST_ID:
-				yield ['wget', '-nv', '-U', headers['User-Agent'], '-P', folder, href, '-O', f'{folder}/{title}']
+				yield default_wget_command(folder) + [href, '-O', f'{folder}/{title}']
 			else:
-				yield ['wget', '-nv', '-U', headers['User-Agent'], '-P', folder, href]
+				yield default_wget_command(folder) + [href]
 		else:
 			yield ['echo', 'Got a funky URL:', href]
 		
